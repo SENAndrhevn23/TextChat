@@ -10,15 +10,20 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-}
-
-application {
-    mainClass = 'client.Client'
-}
-
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
+}
+
+tasks.register('runServer', JavaExec) {
+    group = 'application'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'server.Server'
+}
+
+tasks.register('runClient', JavaExec) {
+    group = 'application'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'client.Client'
 }
